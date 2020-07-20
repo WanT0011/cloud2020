@@ -67,6 +67,13 @@
             <artifactId>cloud-commons</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <!--        eureka-->
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka-server -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
     </dependencies>
 
 

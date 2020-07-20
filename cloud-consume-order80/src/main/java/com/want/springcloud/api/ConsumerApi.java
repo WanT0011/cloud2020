@@ -1,6 +1,7 @@
 package com.want.springcloud.api;
 
 
+import com.netflix.discovery.EurekaClient;
 import com.want.springcloud.entitys.CommonResult;
 import com.want.springcloud.entitys.Payment;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,8 @@ public class ConsumerApi {
     private String consumerTestPrefix = PREFIX + SP + API_PATH + SP;
     @Resource
     RestTemplate restTemplate;
+//    @Resource
+//    EurekaClient client;
 
     @GetMapping("/list")
     public CommonResult<List<Payment>> list(){

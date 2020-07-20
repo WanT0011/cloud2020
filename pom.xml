@@ -13,6 +13,7 @@
     <module>cloud-provider-payment8001</module>
     <module>cloud-consume-order80</module>
       <module>cloud-commons</module>
+      <module>cloud-eureka-server7001</module>
   </modules>
 
   <!-- 统一管理jar包版本 -->
