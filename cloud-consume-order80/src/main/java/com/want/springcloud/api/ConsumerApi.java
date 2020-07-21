@@ -4,6 +4,7 @@ package com.want.springcloud.api;
 import com.netflix.discovery.EurekaClient;
 import com.want.springcloud.entitys.CommonResult;
 import com.want.springcloud.entitys.Payment;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -11,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author want
@@ -23,7 +25,8 @@ public class ConsumerApi {
     private static final String SP = "/";
     private static final String API_PATH = "payment";
 
-    private String consumerTestPrefix = PREFIX + SP + API_PATH + SP;
+//    private String consumerTestPrefix = PREFIX + SP + API_PATH + SP;
+    private String consumerTestPrefix = "http://CLOUD-PROVIDER-PAYMENT" + SP + API_PATH + SP;
     @Resource
     RestTemplate restTemplate;
 //    @Resource
@@ -50,6 +53,23 @@ public class ConsumerApi {
     @PostMapping("/create")
     public CommonResult<Boolean> create(HttpServletRequest request){
         ResponseEntity<CommonResult> entity = restTemplate.postForEntity(consumerTestPrefix + "create",request, CommonResult.class);
+        if(entity != null){
+            return entity.getBody();
+        }
+        return null;
+    }
+
+    @GetMapping("listAllService")
+    public CommonResult<List<String>> listAllService(){
+        ResponseEntity<CommonResult> entity = restTemplate.getForEntity(consumerTestPrefix + "listAllService", CommonResult.class);
+        if(entity != null){
+            return entity.getBody();
+        }
+        return null;
+    }
+    @GetMapping("listPaymentService")
+    public CommonResult<List<String>> listPaymentService(){
+        ResponseEntity<CommonResult> entity = restTemplate.getForEntity(consumerTestPrefix + "listPaymentService", CommonResult.class);
         if(entity != null){
             return entity.getBody();
         }

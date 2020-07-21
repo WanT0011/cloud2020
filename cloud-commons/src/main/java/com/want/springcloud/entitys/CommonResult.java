@@ -30,4 +30,7 @@ public class CommonResult<T> {
     public CommonResult(T data) {
         this(200,"SUCCESS",data);
     }
+    public CommonResult(T data,String msg) {
+        this(200,msg,data);
+    }
 }
