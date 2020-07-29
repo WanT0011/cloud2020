@@ -1,6 +1,8 @@
 package com.want.springcloud.api;
 
 
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.DiscoveryClient;
 import com.netflix.discovery.EurekaClient;
 import com.want.springcloud.entitys.CommonResult;
 import com.want.springcloud.entitys.Payment;
@@ -27,13 +29,22 @@ public class ConsumerApi {
 
 //    private String consumerTestPrefix = PREFIX + SP + API_PATH + SP;
     private String consumerTestPrefix = "http://CLOUD-PROVIDER-PAYMENT" + SP + API_PATH + SP;
+    
+    private static final String SERVICE_ID = "CLOUD-PROVIDER-PAYMENT";
+    
     @Resource
     RestTemplate restTemplate;
 //    @Resource
 //    EurekaClient client;
+    @Resource
+    DiscoveryClient discoveryClient;
+    
 
+    
+    
     @GetMapping("/list")
     public CommonResult<List<Payment>> list(){
+
         ResponseEntity<CommonResult> entity = restTemplate.getForEntity(consumerTestPrefix + "list", CommonResult.class);
         if(entity != null){
             return entity.getBody();
@@ -75,4 +86,6 @@ public class ConsumerApi {
         }
         return null;
     }
+    
+    
 }
