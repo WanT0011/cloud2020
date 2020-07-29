@@ -7,6 +7,7 @@ import com.netflix.discovery.EurekaClient;
 import com.want.springcloud.entitys.CommonResult;
 import com.want.springcloud.entitys.Payment;
 import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -34,17 +35,13 @@ public class ConsumerApi {
     
     @Resource
     RestTemplate restTemplate;
-//    @Resource
-//    EurekaClient client;
-    @Resource
-    DiscoveryClient discoveryClient;
+
     
 
     
     
     @GetMapping("/list")
     public CommonResult<List<Payment>> list(){
-
         ResponseEntity<CommonResult> entity = restTemplate.getForEntity(consumerTestPrefix + "list", CommonResult.class);
         if(entity != null){
             return entity.getBody();
