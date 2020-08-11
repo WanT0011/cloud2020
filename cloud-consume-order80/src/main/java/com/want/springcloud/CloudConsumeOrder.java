@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableEurekaClient
 @RibbonClient(name = "CLOUD-PROVIDER-PAYMENT",configuration = MyRibbonRule.class)
-@EnableFeignClients
+@EnableFeignClients({"com.want.springcloud.api"})
 public class CloudConsumeOrder {
     public static void main(String[] args) {
         SpringApplication.run(CloudConsumeOrder.class,args);

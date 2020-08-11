@@ -14,12 +14,14 @@ import java.util.List;
  * @author want
  * @createTime 2020.07.29.22:34
  */
-@Component
 @FeignClient("CLOUD-PROVIDER-PAYMENT")
 public interface FeignClientApi {
 
     @GetMapping("/payment/list")
     CommonResult<List<Payment>> list();
+
+    @GetMapping("/payment/{id}")
+    CommonResult<Payment> getPaymentById(@PathVariable("id") Long id);
 
 
 }

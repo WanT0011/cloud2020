@@ -32,6 +32,11 @@ public class PaymentApi {
     @GetMapping("/list")
     public CommonResult<List<Payment>> list(){
         log.info("list api ");
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return new CommonResult(paymentService.list(),serverPort);
     }
 
